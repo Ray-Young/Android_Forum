@@ -12,7 +12,7 @@ import android.graphics.Bitmap;
 //list_Sort为排序list，是讲JSONOBJECT以title的时间顺序排序并存放的list
 //temp存放的是在比较comments时间时的缓存数据
 //latest_reply_index是存放comments最后评论者所在index位置的数组
-public class KeyValue {
+public class STATIC_VAR {
 	public static String res;
 	public static JSONArray ja;
 	public static Bitmap bitmap_default;

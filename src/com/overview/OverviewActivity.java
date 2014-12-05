@@ -59,11 +59,11 @@ public class OverviewActivity extends ActionBarActivity {
 		// 调用init来得到初始数据
 		// Helpers.init(getApplicationContext());
 		try {
-			for (int i = 0; i < com.obj.KeyValue.ja.length(); i++) {
+			for (int i = 0; i < com.obj.STATIC_VAR.ja.length(); i++) {
 				// 对图片进行下载
 				// 传入双参数，一个是图片URL，一个是对应的寻路信息
 				downloadTask = new DownloadTask();
-				downloadTask.execute(com.obj.KeyValue.list_Sort.get(i).getJb()
+				downloadTask.execute(com.obj.STATIC_VAR.list_Sort.get(i).getJb()
 						.getJSONObject("author").getString("profile_image"),
 						Integer.toString(i));
 			}
@@ -82,6 +82,10 @@ public class OverviewActivity extends ActionBarActivity {
 	protected void onDestroy() {
 		super.onDestroy();
 		// downloadTask.cancel(true);
+	}
+	
+	protected void onPause(){
+		
 	}
 
 	// 因为图片内容较大，通过集成AsyncTask激活多线程下载，避免卡死主线程
@@ -110,7 +114,7 @@ public class OverviewActivity extends ActionBarActivity {
 				return mp;
 			} else {
 				// 若URL为空，则使用默认图片
-				mp.setBitmap(com.obj.KeyValue.bitmap_default);
+				mp.setBitmap(com.obj.STATIC_VAR.bitmap_default);
 				mp.setIndex(Integer.parseInt(bitmapUrl[1]));
 				return mp;
 			}
@@ -147,21 +151,21 @@ public class OverviewActivity extends ActionBarActivity {
 		public MyAdapter(Context context) throws JSONException {
 			// 初始化infalter,将OverviewActivity的context信息注入
 			inflater = LayoutInflater.from(context);
-			for (int i = 0; i < com.obj.KeyValue.ja.length(); i++) {
+			for (int i = 0; i < com.obj.STATIC_VAR.ja.length(); i++) {
 				// 将要显示的数据传入Myadapter的媒介 ResultObj a = new ResultObj();
 				ResultObj a = new ResultObj();
-				a.tag_name = com.obj.KeyValue.list_Sort.get(i).getJb()
+				a.tag_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
 						.getString("tag").toString();
-				a.last_name = com.obj.KeyValue.list_Sort.get(i).getJb()
+				a.last_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
 						.getJSONArray("comments")
-						.getJSONObject(com.obj.KeyValue.lastest_reply_index[i])
+						.getJSONObject(com.obj.STATIC_VAR.lastest_reply_index[i])
 						.getJSONObject("author").getString("first_name");
-				a.bitmap = com.obj.KeyValue.bitmap_default;
-				a.title = com.obj.KeyValue.list_Sort.get(i).getJb()
+				a.bitmap = com.obj.STATIC_VAR.bitmap_default;
+				a.title = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
 						.getString("title").toString();
-				a.content = com.obj.KeyValue.list_Sort.get(i).getJb()
+				a.content = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
 						.getString("content").toString();
-				a.Response_count = Integer.toString(com.obj.KeyValue.list_Sort
+				a.Response_count = Integer.toString(com.obj.STATIC_VAR.list_Sort
 						.get(i).getJb().getJSONArray("comments").length());
 				a.index = i;
 				list.add(a);

@@ -64,10 +64,10 @@ public class DetailActivity extends ActionBarActivity {
 		index = obj.getPos();
 		try {
 			//进行图片下载
-			for (int i = 0; i < com.obj.KeyValue.list_Sort.get(index).getJb()
+			for (int i = 0; i < com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 					.getJSONArray("comments").length(); i++) {
 				(new DownloadTask()).execute(
-						com.obj.KeyValue.list_Sort.get(index).getJb()
+						com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 								.getJSONArray("comments").getJSONObject(i)
 								.getJSONObject("author")
 								.getString("profile_image"),
@@ -81,23 +81,23 @@ public class DetailActivity extends ActionBarActivity {
 			TextView last_nameTextView = (TextView) findViewById(R.id.last_name_detail);
 			TextView time_detailTextView = (TextView) findViewById(R.id.post_time_detail);
 			title_detailTextView.setText(""
-					+ com.obj.KeyValue.list_Sort.get(index).getJb()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 							.getString("title"));
 			content_detailTextView.setText(""
-					+ com.obj.KeyValue.list_Sort.get(index).getJb()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 							.getString("content"));
 			comment_countTextView.setText(""
-					+ com.obj.KeyValue.list_Sort.get(index).getJb().length()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb().length()
 					+ " Comments" + "·   ");
 			commetviewsTextView.setText(""
-					+ com.obj.KeyValue.list_Sort.get(index).getJb()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 							.getString("views") + "  Views");
 			last_nameTextView.setText("Posted by "
-					+ com.obj.KeyValue.list_Sort.get(index).getJb()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 							.getJSONObject("author").getString("first_name")
 					+ " ·   ");
 			time_detailTextView.setText("Created time "
-					+ com.obj.KeyValue.list_Sort.get(index).getJb()
+					+ com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 							.getString("time_created"));
 			listView = (ListView) findViewById(R.id.list_detail);
 			adapter = new MyAdapter(getApplicationContext());
@@ -131,7 +131,7 @@ public class DetailActivity extends ActionBarActivity {
 				}
 				return mp;
 			} else {
-				mp.setBitmap(com.obj.KeyValue.bitmap_default);
+				mp.setBitmap(com.obj.STATIC_VAR.bitmap_default);
 				mp.setIndex(Integer.parseInt(bitmapUrl[1]));
 				return mp;
 			}
@@ -178,17 +178,17 @@ public class DetailActivity extends ActionBarActivity {
 
 		public MyAdapter(Context context) throws JSONException {
 			inflater = LayoutInflater.from(context);
-			for (int i = 0; i < com.obj.KeyValue.list_Sort.get(index).getJb()
+			for (int i = 0; i < com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 					.getJSONArray("comments").length(); i++) {
 				ResultObj a = new ResultObj();
-				a.replyer_first_name = com.obj.KeyValue.list_Sort.get(index)
+				a.replyer_first_name = com.obj.STATIC_VAR.list_Sort.get(index)
 						.getJb().getJSONArray("comments").getJSONObject(i)
 						.getJSONObject("author").getString("first_name");
-				a.reply_content = com.obj.KeyValue.list_Sort.get(index).getJb()
+				a.reply_content = com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 						.getJSONArray("comments").getJSONObject(i)
 						.getString("content");
-				a.bitmap = com.obj.KeyValue.bitmap_default;
-				a.rely_time = com.obj.KeyValue.list_Sort.get(index).getJb()
+				a.bitmap = com.obj.STATIC_VAR.bitmap_default;
+				a.rely_time = com.obj.STATIC_VAR.list_Sort.get(index).getJb()
 						.getJSONArray("comments").getJSONObject(i)
 						.getString("time_created");
 				list.add(a);
