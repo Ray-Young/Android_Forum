@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Glow_Exercise_Ray</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_overview">OverviewActivity</string>
-    <string name="title_activity_list_view">ThemeList</string>
-    <string name="title_activity_detail">ThemeInfo</string>
+	<string name="app_name">Glow_Exercise_Ray</string>
+	<string name="hello_world">Hello world!</string>
+	<string name="action_settings">Settings</string>
+	<string name="title_activity_overview">OverviewActivity</string>
+	<string name="title_activity_list_view">ThemeList</string>
+	<string name="title_activity_detail">ThemeInfo</string>
 
 </resources>

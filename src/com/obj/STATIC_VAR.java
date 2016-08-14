@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import android.graphics.Bitmap;
+
 //keyvalue中存放一些全局变量
 //res为读取JSON时的Buffer
 //JA为初次将Buffer转换到内存中得变量

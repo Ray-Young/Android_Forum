@@ -63,8 +63,8 @@ public class OverviewActivity extends ActionBarActivity {
 				// 对图片进行下载
 				// 传入双参数，一个是图片URL，一个是对应的寻路信息
 				downloadTask = new DownloadTask();
-				downloadTask.execute(com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getJSONObject("author").getString("profile_image"),
+				downloadTask.execute(
+						com.obj.STATIC_VAR.list_Sort.get(i).getJb().getJSONObject("author").getString("profile_image"),
 						Integer.toString(i));
 			}
 			// 填充界面
@@ -83,9 +83,9 @@ public class OverviewActivity extends ActionBarActivity {
 		super.onDestroy();
 		// downloadTask.cancel(true);
 	}
-	
-	protected void onPause(){
-		
+
+	protected void onPause() {
+
 	}
 
 	// 因为图片内容较大，通过集成AsyncTask激活多线程下载，避免卡死主线程
@@ -102,8 +102,7 @@ public class OverviewActivity extends ActionBarActivity {
 				try {
 					// 对存在URL内容的图片进行读取和解码
 					imageUrl = new URL(bitmapUrl[0]);
-					HttpURLConnection conn = (HttpURLConnection) imageUrl
-							.openConnection();
+					HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
 					InputStream inputStream = conn.getInputStream();
 					bitmap = BitmapFactory.decodeStream(inputStream);
 					mp.setBitmap(bitmap);
@@ -154,19 +153,15 @@ public class OverviewActivity extends ActionBarActivity {
 			for (int i = 0; i < com.obj.STATIC_VAR.ja.length(); i++) {
 				// 将要显示的数据传入Myadapter的媒介 ResultObj a = new ResultObj();
 				ResultObj a = new ResultObj();
-				a.tag_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getString("tag").toString();
-				a.last_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getJSONArray("comments")
-						.getJSONObject(com.obj.STATIC_VAR.lastest_reply_index[i])
-						.getJSONObject("author").getString("first_name");
+				a.tag_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb().getString("tag").toString();
+				a.last_name = com.obj.STATIC_VAR.list_Sort.get(i).getJb().getJSONArray("comments")
+						.getJSONObject(com.obj.STATIC_VAR.lastest_reply_index[i]).getJSONObject("author")
+						.getString("first_name");
 				a.bitmap = com.obj.STATIC_VAR.bitmap_default;
-				a.title = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getString("title").toString();
-				a.content = com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getString("content").toString();
-				a.Response_count = Integer.toString(com.obj.STATIC_VAR.list_Sort
-						.get(i).getJb().getJSONArray("comments").length());
+				a.title = com.obj.STATIC_VAR.list_Sort.get(i).getJb().getString("title").toString();
+				a.content = com.obj.STATIC_VAR.list_Sort.get(i).getJb().getString("content").toString();
+				a.Response_count = Integer
+						.toString(com.obj.STATIC_VAR.list_Sort.get(i).getJb().getJSONArray("comments").length());
 				a.index = i;
 				list.add(a);
 			}
@@ -189,20 +184,16 @@ public class OverviewActivity extends ActionBarActivity {
 
 		@Override
 		// 绑定，显示数据
-		public View getView(final int position, View convertView,
-				ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.item_list, null);
 			}
 			// 讲前台的ID与后台参数进行绑定
 			ResultObj tmp = (ResultObj) getItem(position);
-			TextView tagName = (TextView) convertView
-					.findViewById(R.id.tagName);
-			TextView lastName = (TextView) convertView
-					.findViewById(R.id.lastName);
+			TextView tagName = (TextView) convertView.findViewById(R.id.tagName);
+			TextView lastName = (TextView) convertView.findViewById(R.id.lastName);
 
-			ImageView imgView = (ImageView) convertView
-					.findViewById(R.id.imgView);
+			ImageView imgView = (ImageView) convertView.findViewById(R.id.imgView);
 			Drawable drawable = new BitmapDrawable(getResources(), tmp.bitmap);
 			// 因为点击Title要进行跳转，设置OnlickListener并实例化
 			TextView title = (TextView) convertView.findViewById(R.id.title);
@@ -211,8 +202,7 @@ public class OverviewActivity extends ActionBarActivity {
 				public void onClick(View v) {
 					// 通过DetailContent数据类型定义要传递的数据
 					DetailContent data = new DetailContent();
-					Intent intent = new Intent(OverviewActivity.this,
-							DetailActivity.class);
+					Intent intent = new Intent(OverviewActivity.this, DetailActivity.class);
 					data.setPos(position);
 					Bundle bundle = new Bundle();
 					// 使用bundle来传递DetaiConten类型的data
@@ -223,10 +213,8 @@ public class OverviewActivity extends ActionBarActivity {
 				}
 			});
 
-			TextView content = (TextView) convertView
-					.findViewById(R.id.content);
-			TextView Response_count = (TextView) convertView
-					.findViewById(R.id.Response_count);
+			TextView content = (TextView) convertView.findViewById(R.id.content);
+			TextView Response_count = (TextView) convertView.findViewById(R.id.Response_count);
 			// 将后台参数与数据实体进行绑定
 			tagName.setText(tmp.tag_name + "  > ");
 			lastName.setText(tmp.last_name);

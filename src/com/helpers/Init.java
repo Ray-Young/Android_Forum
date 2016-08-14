@@ -16,10 +16,9 @@ public class Init extends Application {
 	public void onCreate() {
 		super.onCreate();
 		try {
-			Context context=getApplicationContext();
+			Context context = getApplicationContext();
 			// 读取JSON文件
-			InputStream in = context.getResources().openRawResource(
-					R.raw.community);
+			InputStream in = context.getResources().openRawResource(R.raw.community);
 			int length = in.available();
 			byte[] buffer = new byte[length];
 			in.read(buffer);
@@ -33,8 +32,8 @@ public class Init extends Application {
 			// 将原始的JSON数据放入List_sort(未排序），List_sort中的元素由一个index和一个JSONObject构成，index代表的内容是time_created
 			for (int i = 0; i < com.obj.STATIC_VAR.ja.length(); ++i) {
 				CompareObjTitle tmp = new CompareObjTitle();
-				tmp.setIndex(Integer.parseInt(com.obj.STATIC_VAR.ja
-						.getJSONObject(i).getString("time_created").toString()));
+				tmp.setIndex(
+						Integer.parseInt(com.obj.STATIC_VAR.ja.getJSONObject(i).getString("time_created").toString()));
 				tmp.setJb(com.obj.STATIC_VAR.ja.getJSONObject(i));
 				com.obj.STATIC_VAR.list_Sort.add(tmp);
 			}
@@ -45,17 +44,13 @@ public class Init extends Application {
 				com.obj.STATIC_VAR.temp[0] = 0;
 				com.obj.STATIC_VAR.temp[1] = 0;
 
-				for (int j = 0; j < com.obj.STATIC_VAR.list_Sort.get(i).getJb()
-						.getJSONArray("comments").length(); j++) {
+				for (int j = 0; j < com.obj.STATIC_VAR.list_Sort.get(i).getJb().getJSONArray("comments")
+						.length(); j++) {
 					// temp[0]是比较值，比较replytime
-					if (Integer.parseInt(com.obj.STATIC_VAR.list_Sort.get(i)
-							.getJb().getJSONArray("comments").getJSONObject(j)
-							.getString("time_created").toString()) > com.obj.STATIC_VAR.temp[0]) {
-						com.obj.STATIC_VAR.temp[0] = Integer
-								.parseInt(com.obj.STATIC_VAR.list_Sort.get(i)
-										.getJb().getJSONArray("comments")
-										.getJSONObject(j)
-										.getString("time_created").toString());
+					if (Integer.parseInt(com.obj.STATIC_VAR.list_Sort.get(i).getJb().getJSONArray("comments")
+							.getJSONObject(j).getString("time_created").toString()) > com.obj.STATIC_VAR.temp[0]) {
+						com.obj.STATIC_VAR.temp[0] = Integer.parseInt(com.obj.STATIC_VAR.list_Sort.get(i).getJb()
+								.getJSONArray("comments").getJSONObject(j).getString("time_created").toString());
 						com.obj.STATIC_VAR.temp[1] = j; // temp[1]存放最后评论者的时间
 					}
 					// 得到以List_sort为序列的每个latest_reply_index

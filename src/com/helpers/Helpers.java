@@ -10,7 +10,7 @@ public class Helpers {
 	public static void bubbleSort(ArrayList<CompareObjTitle> list) {
 		for (int i = 0; i < list.size() - 1; i++) {
 			for (int j = 0; j < list.size() - i - 1; j++) {
-				//index所代表的内容是content的time_created
+				// index所代表的内容是content的time_created
 				if (list.get(j).getIndex() <= list.get(j + 1).getIndex()) {
 					CompareObjTitle tmp = list.get(j);
 					list.set(j, list.get(j + 1));
@@ -19,5 +19,5 @@ public class Helpers {
 			}
 		}
 	}
-    //init包括两步操作，读取JSON文件，读取本地的默认图片
+	// init包括两步操作，读取JSON文件，读取本地的默认图片
 }
